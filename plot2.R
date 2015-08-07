@@ -11,6 +11,7 @@ dir = file.path("..","household_power_consumption.txt")
 power<-read.csv(dir,sep=";",skip = l_start-1, nrows = nrows,
                 colClasses = colclasses, header = F, col.names = col_names)
 power <- within(power, Date_Time <- paste(power$Date, power$Time, sep=' '))
+f <- "%d/%m/%Y %H:%M:%S"
 power <- within(power, Date_Time <- strptime(power$Date_Time,format = f))
 plot(power$Date_Time,power$Global_active_power,type="l", ylab = "Global Active Power (kilowatts)",
      xlab="")
